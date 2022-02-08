@@ -10,6 +10,7 @@
             >
                 <div class="w-8 h-8 mr-4 rounded-full bg-gray-200 overflow-hidden">
                     <img
+                        alt="{{ "Afbeelding van {$set->name}" }}"
                         src="{{ $set->image_url }}"
                         class="w-full h-full object-center object-cover"
                     >
@@ -17,7 +18,7 @@
 
                 <div class="flex flex-col">
                     <div class="text-blue-800">{{ $set->name }}</div>
-                    <div class="text-sm text-gray-600">{{ $set->identifier }}</div>
+                    <div class="text-sm text-gray-600">{{ $set->identifier }} / {{ $set->parts }} {{ trans_choice('stukje|stukjes', $set->parts) }}</div>
                 </div>
             </a>
         @endforeach

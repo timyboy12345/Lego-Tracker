@@ -17,3 +17,7 @@ mix.js("resources/js/app.js", "public/js")
     ]);
 
 mix.disableSuccessNotifications();
+
+if (mix.inProduction()) {
+    mix.version();
+}

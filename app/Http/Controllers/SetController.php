@@ -124,10 +124,11 @@ class SetController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
+     * @param Box $box
      * @param Set $set
      * @return Response
      */
-    public function update(Request $request, Set $set): Response
+    public function update(Request $request, Box $box, Set $set): Response
     {
         //
     }
@@ -135,11 +136,13 @@ class SetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Box $box
      * @param Set $set
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy(Set $set): Response
+    public function destroy(Box $box, Set $set): RedirectResponse
     {
-        //
+        $set->delete();
+        return response()->redirectToRoute('boxes.show', $box->id);
     }
 }
