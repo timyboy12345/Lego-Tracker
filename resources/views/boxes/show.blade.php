@@ -5,7 +5,7 @@
     <div class="divide-y divide-gray-100">
         @foreach ($box->sets as $set)
             <a
-                href="{{ route('sets.show', [$set->box->id, $set->id]) }}"
+                href="{{ route('sets.show', [$box->id, $set->id]) }}"
                 class="hover:bg-gray-100 items-center transition block py-2 px-4 flex flex-row"
             >
                 <div class="w-8 h-8 mr-4 rounded-full bg-gray-200 overflow-hidden">
@@ -21,5 +21,10 @@
                 </div>
             </a>
         @endforeach
+
+        <a href="{{ route('sets.create', [$box->id]) }}"
+           class="hover:bg-gray-100 items-center transition block py-2 px-4 flex flex-row text-gray-500">
+            + Nieuwe set toevoegen
+        </a>
     </div>
 @endsection

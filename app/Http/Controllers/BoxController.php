@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Box;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -31,18 +32,28 @@ class BoxController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('boxes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'color' => 'required|string|max:255',
+            'identifier' => 'required|string|max:255',
+        ]);
+
+        $box = new Box();
+        $box->fill($request->only($box->getFillable()));
+        $box->save();
+
+        return response()->redirectToRoute('boxes.show', $box->id);
     }
 
     /**

@@ -19,6 +19,12 @@ class Box extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'identifier',
+        'color',
+    ];
+
     /**
      * @return HasMany
      */

@@ -31,16 +31,24 @@
         </div>
     @endisset
 
-    <div class="grid lg:grid-cols-4 gap-4">
+    <div class="grid lg:grid-cols-4 gap-4 items-start">
         <div class="lg:grid-span-1 bg-white shadow rounded overflow-hidden divide-y divide-gray-100">
             @foreach (\App\Models\Box::all() as $menuBox)
                 <a
                     href="{{ route('boxes.show', $menuBox->id) }}"
-                    class="block py-2 px-4 transition hover:bg-gray-100 {{ \Illuminate\Support\Facades\Request::segment(2) == $menuBox->id ? 'text-blue-800 bg-blue-100 hover:bg-blue-200' : '' }}"
+                    class="flex flex-col block py-2 px-4 transition hover:bg-gray-100 {{ \Illuminate\Support\Facades\Request::segment(2) == $menuBox->id ? 'text-blue-800 bg-blue-100 hover:bg-blue-200' : '' }}"
                 >
-                    {{ $menuBox->name }}
+                    <div>{{ $menuBox->name }}</div>
+                    <div class="text-gray-500 text-sm">{{ $menuBox->sets->count() }} {{ trans_choice('set|sets', $menuBox->sets->count()) }}</div>
                 </a>
             @endforeach
+
+            <a
+                href="{{ route('boxes.create') }}"
+                class="block py-2 px-4 transition text-gray-500 hover:bg-gray-100"
+            >
+                + Nieuwe Doos
+            </a>
         </div>
 
         <div class="lg:col-span-3 bg-white shadow rounded">
@@ -53,12 +61,12 @@
             Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
         </div>
 
-        @isset($box)
-            <a href="{{ route('sets.create', $box->id) }}"
-               class="block text-sm bg-blue-800 text-white rounded shadow py-2 px-4">
-                Nieuwe set toevoegen
-            </a>
-        @endisset
+{{--        @isset($box)--}}
+{{--            <a href="{{ route('sets.create', $box->id) }}"--}}
+{{--               class="block text-sm bg-blue-800 text-white rounded shadow py-2 px-4">--}}
+{{--                Nieuwe set toevoegen--}}
+{{--            </a>--}}
+{{--        @endisset--}}
     </div>
 </div>
 </body>

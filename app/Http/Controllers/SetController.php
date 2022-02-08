@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\RebrickableService;
 use App\Models\Box;
-use App\Models\set;
+use App\Models\Set;
 use Exception;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -42,6 +43,7 @@ class SetController extends Controller
      * @param Box $box
      * @param Request $request
      * @return RedirectResponse
+     * @throws RequestException
      */
     public function store(Box $box, Request $request): RedirectResponse
     {
