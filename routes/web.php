@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\CheckController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SetController;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,8 @@ Route::resource('boxes', BoxController::class);
 
 Route::prefix('boxes/{box}')->group(function () {
     Route::resource('sets', SetController::class);
+
+    Route::prefix('sets/{set}')->group(function () {
+        Route::resource('checks', CheckController::class);
+    });
 });

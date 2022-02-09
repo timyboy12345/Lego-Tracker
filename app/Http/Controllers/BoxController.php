@@ -22,6 +22,11 @@ class BoxController extends Controller
 
         return response()->view('boxes.index', [
             'boxes' => $boxes,
+            'breadcrumbs' => [
+                [
+                    'title' => 'Alle dozen'
+                ]
+            ]
         ]);
     }
 
@@ -32,7 +37,16 @@ class BoxController extends Controller
      */
     public function create()
     {
-        return response()->view('boxes.create');
+        return response()->view('boxes.create', [
+            'breadcrumbs' => [
+                [
+                    'title' => 'Alle dozen',
+                    'href' => route('boxes.index'),
+                ], [
+                    'title' => 'Nieuwe doos toevoegen',
+                ]
+            ]
+        ]);
     }
 
     /**

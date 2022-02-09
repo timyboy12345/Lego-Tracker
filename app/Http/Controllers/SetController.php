@@ -34,6 +34,19 @@ class SetController extends Controller
     {
         return response()->view('sets.create', [
             'box' => $box,
+            'breadcrumbs' => [
+                [
+                    'title' => 'Alle dozen',
+                    'href' => route('boxes.index'),
+                ],
+                [
+                    'title' => $box->name,
+                    'href' => route('boxes.show', $box->id),
+                ],
+                [
+                    'title' => 'Nieuwe doos toevoegen',
+                ]
+            ]
         ]);
     }
 
@@ -92,6 +105,7 @@ class SetController extends Controller
     public function show(Box $box, Set $set): Response
     {
         return response()->view('sets.show', [
+            'box' => $box,
             'set' => $set,
             'breadcrumbs' => [
                 [

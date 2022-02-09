@@ -9,27 +9,20 @@
             @csrf
 
             <div class="mb-4">
-                <label for="identifier" class="text-gray-800 mb-1 block text-sm">Setnummer</label>
-                <input id="identifier" placeholder="Setnummer" name="identifier" type="text"
-                       class="border border-gray-200 py-1 px-2 rounded w-full outline-none">
-
-                @error('identifier')
-                <div class="text-xs italic text-red-600 block mt-1">
-                    {{ $message }}
-                </div>
-                @enderror
+                <x-input
+                    id="identifier"
+                    label="Setnummer"
+                    placeholder="Voer 4-cijferige setnummer in"
+                    type="number"
+                ></x-input>
             </div>
 
             <div class="mb-4">
-                <label for="name" class="text-gray-800 mb-1 block text-sm">Naam</label>
-                <input id="name" placeholder="Naam" name="name" type="text"
-                       class="border border-gray-200 py-1 px-2 rounded w-full outline-none">
-
-                @error('name')
-                <div class="text-xs italic text-red-600 block mt-1">
-                    {{ $message }}
-                </div>
-                @enderror
+                <x-input
+                    id="name"
+                    label="Naam"
+                    placeholder="Voer een naam in (mocht je de standaard naam willen overschrijven)"
+                ></x-input>
             </div>
 
             <button

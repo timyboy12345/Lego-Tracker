@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Set
  * @package App\Models
  *
+ * @property number $id
  * @property string $identifier
  * @property string $name
  * @property string $box_id
@@ -38,5 +40,13 @@ class Set extends Model
     public function box(): BelongsTo
     {
         return $this->belongsTo(Box::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function checks(): HasMany
+    {
+        return $this->hasMany(Check::class);
     }
 }
