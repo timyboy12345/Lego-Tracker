@@ -12,7 +12,7 @@
     <div class="p-4">
         <h2 class="text-xl text-blue-800 font-bold">{{ $set->name }}</h2>
 
-        <ul class="pl-8 list-disc mb-4">
+        <ul class="pl-8 list-disc">
             @isset($set->identifier)
                 <li>Setnummer: {{ $set->identifier }}</li>
             @endisset
@@ -28,12 +28,20 @@
         </ul>
     </div>
 
+    <hr class="py-2">
+
+    <h3 class="text-blue-800 font-bold px-4">Checks van deze Set</h3>
     <div class="flex flex-col divide-y divide-gray-100">
+        <div class="py-2 px-4">
+            <h3 class="text-sm">{{ \Carbon\Carbon::make($set->created_at)->diffForHumans() }} / Aangemaakt</h3>
+            <p class="text-xs text-gray-600">Deze set is op deze datum toegevoegd</p>
+        </div>
+
         @foreach ($set->checks as $check)
             <div class="py-2 px-4">
-                <h3 class="text-lg">{{ \Carbon\Carbon::make($check->created_at)->diffForHumans() }}
+                <h3 class="text-sm">{{ \Carbon\Carbon::make($check->created_at)->diffForHumans() }}
                     / {{ $check->type }}</h3>
-                <p class="text-sm text-gray-600">{{ $check->comments }}</p>
+                <p class="text-xs text-gray-600">{{ $check->comments }}</p>
             </div>
         @endforeach
 
@@ -54,7 +62,7 @@
             @method('DELETE')
             @csrf
 
-            <button type="submit" class="text-sm underline">Set verwijderen</button>
+            <button type="submit" class="text-sm underline hover:text-red-900 transition duration-100">Set verwijderen</button>
         </form>
     </div>
 @endsection
